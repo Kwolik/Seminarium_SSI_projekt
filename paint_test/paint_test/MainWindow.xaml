@@ -27,7 +27,7 @@
         <StackPanel Grid.Column="0" Grid.Row="1">
             <Grid Background="yellow">
                 <Button x:Name="pen" Margin="30,15,330,15" Height="30" Content="Długopis" Click="paint_Click"/>
-                <Button x:Name="select"  Content="Zaznacz" Margin="180,15" Height="30" Click="paint_Click"/>
+                <Button x:Name="clear"  Content="Usuń" Margin="180,15" Height="30" Click="paint_Click"/>
                 <Button x:Name="erased"  Content="Gumka" Margin="330,15,30,15" Height="30" Click="paint_Click"/>
             </Grid>
         </StackPanel>

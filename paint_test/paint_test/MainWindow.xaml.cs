@@ -37,8 +37,8 @@ namespace paint_test
             if (button.Name == "pen")
                 MyCanvas.EditingMode = InkCanvasEditingMode.Ink;
 
-            if (button.Name == "select")
-                MyCanvas.EditingMode = InkCanvasEditingMode.Select;
+            if (button.Name == "clear")
+                MyCanvas.Strokes.Clear();
 
             if (button.Name == "erased")
                 MyCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
@@ -61,10 +61,10 @@ namespace paint_test
             }
 
             if (button.Name == "porownaj")
-            {
+            { 
                 Bitmap bitmap = DrawControlToBitmap(MyCanvas);
-                bitmap.Save("siemanko.jpg");
-                System.Diagnostics.Process.Start("siemanko.jpg");
+                bitmap.Save("siema.jpg");
+                System.Diagnostics.Process.Start("siema.jpg");
             }
                 
         }
@@ -86,6 +86,7 @@ namespace paint_test
             
         }
 
+        
         private static Bitmap DrawControlToBitmap(Control control)
         {
             Bitmap bitmap = new Bitmap(control.Width, control.Height);
@@ -94,5 +95,6 @@ namespace paint_test
             graphics.CopyFromScreen(rect.Location, Point.Empty, control.Size);
             return bitmap;
         }
+        
     }
 }
