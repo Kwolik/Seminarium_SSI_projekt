@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-
+// siema Daniel
 namespace paint_test
 {
     class PunktyKluczowe
