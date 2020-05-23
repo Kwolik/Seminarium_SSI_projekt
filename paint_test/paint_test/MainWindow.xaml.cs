@@ -48,30 +48,40 @@ namespace paint_test
         {
             Button button = (Button)sender;
 
-            if(button.Name == "save")
+            if (button.Name == "save")
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "InkCanvas Format|*.jpg";
-                sfd.Title = "Save InkCanvas File";
-                sfd.ShowDialog();
-                if (sfd.FileName == "") return;
-                FileStream fs = File.Open(sfd.FileName, FileMode.CreateNew);
+                FileStream fs = File.Open("save.bin", FileMode.CreateNew);
                 MyCanvas.Strokes.Save(fs);
                 fs.Close();
             }
 
             if (button.Name == "porownaj")
-            { 
-                Bitmap bitmap = DrawControlToBitmap(MyCanvas);
-                bitmap.Save("siema.jpg");
-                System.Diagnostics.Process.Start("siema.jpg");
+            {
+                // Save document
+                string filename = "savedimage.jpg";
+                //get the dimensions of the ink control
+                int margin = (int)this.MyCanvas.Margin.Left;
+                int width = (int)this.MyCanvas.ActualWidth - margin;
+                int height = (int)this.MyCanvas.ActualHeight - margin;
+                //render ink to bitmap
+                RenderTargetBitmap rtb =
+                new RenderTargetBitmap(width, height, 96d, 96d, PixelFormats.Default);
+                rtb.Render(MyCanvas);
+
+                using (FileStream fs = new FileStream(filename, FileMode.Create))
+                {
+                    BmpBitmapEncoder encoder = new BmpBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(rtb));
+                    encoder.Save(fs);
+                }
+
             }
                 
         }
 
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
-            using (FileStream fs = new FileStream("MyPicture.bin", FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new FileStream("save.bin", FileMode.Open, FileAccess.Read))
             {
                 StrokeCollection sc = new StrokeCollection(fs);
                 this.MyCanvas.Strokes = sc;
@@ -85,16 +95,5 @@ namespace paint_test
             PunktyKluczowe.punktyKluczowe();
             
         }
-
-        
-        private static Bitmap DrawControlToBitmap(Control control)
-        {
-            Bitmap bitmap = new Bitmap(control.Width, control.Height);
-            Graphics graphics = Graphics.FromImage(bitmap);
-            Rectangle rect = control.RectangleToScreen(control.ClientRectangle);
-            graphics.CopyFromScreen(rect.Location, Point.Empty, control.Size);
-            return bitmap;
-        }
-        
     }
 }

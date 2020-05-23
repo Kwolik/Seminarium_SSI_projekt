@@ -21,7 +21,9 @@
 
         <!-- Poszczegolne elementy dziele na StackPanele-->
         <StackPanel Grid.Column="0" Grid.Row="0" Background="purple">
-            <InkCanvas x:Name="MyCanvas" Height="300" Width="300" Margin="20" Background="white"></InkCanvas>
+            <Grid Height="300" Width="300" Margin="20">
+                <InkCanvas x:Name="MyCanvas" Height="300" Width="300" Background="white"/>
+            </Grid>
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="1">

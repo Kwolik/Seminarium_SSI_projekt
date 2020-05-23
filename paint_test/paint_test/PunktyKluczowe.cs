@@ -12,7 +12,7 @@ namespace paint_test
         public static void punktyKluczowe()
         {
             double K = 0;
-            Bitmap btmz = new Bitmap(@"siema.jpg");
+            Bitmap btmz = new Bitmap(@"savedimage.jpg");
             Bitmap btmF = new Bitmap(btmz.Width, btmz.Height);
 
             double[][] kernel = new double[3][];
