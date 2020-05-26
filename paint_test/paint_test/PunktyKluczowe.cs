@@ -83,6 +83,10 @@ namespace paint_test
                 if (sumaCzarnych < 6000)
                     wynik = 0;
 
+
+                wynik *= 100;
+                return (Math.Round(wynik, 2));
+
             }
         }
 
