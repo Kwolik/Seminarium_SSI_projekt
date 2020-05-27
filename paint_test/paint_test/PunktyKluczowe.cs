@@ -32,9 +32,34 @@ namespace paint_test
                 double sumaCzarnychOryginal = 0;
                 double wynik = 0;
 
-                for (int Xcount = 0; Xcount < btm.Width; Xcount++)
+                for (int Xcount = 0; Xcount < btm.Width / 2; Xcount++)
                 {
-                    for (int Ycount = 0; Ycount < btm.Height; Ycount++)
+                    for (int Ycount = 0; Ycount < btm.Height / 2; Ycount++)
+                    {
+
+                        if (((btm.GetPixel(Xcount, Ycount).R == 0) && (btm.GetPixel(Xcount, Ycount).G == 0) && (btm.GetPixel(Xcount, Ycount).B == 0)) && ((btmF.GetPixel(Xcount, Ycount).R == 255) && (btmF.GetPixel(Xcount, Ycount).G == 255) && (btmF.GetPixel(Xcount, Ycount).B == 255)))
+                            iloscPrzeciwnych++; //narysowany czarny, z bazy bialy
+
+
+                        if (((btm.GetPixel(Xcount, Ycount).R == 0) && (btm.GetPixel(Xcount, Ycount).G == 0) && (btm.GetPixel(Xcount, Ycount).B == 0)) && ((btmF.GetPixel(Xcount, Ycount).R == 0) && (btmF.GetPixel(Xcount, Ycount).G == 0) && (btmF.GetPixel(Xcount, Ycount).B == 0)))
+                            iloscCzarnych++; // narysowany czarny, z bazy czarny
+
+
+                        if ((btm.GetPixel(Xcount, Ycount).R == 0) && (btm.GetPixel(Xcount, Ycount).G == 0) && (btm.GetPixel(Xcount, Ycount).B == 0))
+                            sumaCzarnych++;
+
+                        if ((btmF.GetPixel(Xcount, Ycount).R == 0) && (btmF.GetPixel(Xcount, Ycount).G == 0) && (btmF.GetPixel(Xcount, Ycount).B == 0))
+                            sumaCzarnychOryginal++;
+                    }
+                }
+
+                if (sumaCzarnych > sumaCzarnychOryginal * 1.05 || sumaCzarnych < sumaCzarnychOryginal * 0.85)
+                    return wynik = 0;
+
+
+                for (int Xcount = btm.Width / 2; Xcount < btm.Width; Xcount++)
+                {
+                    for (int Ycount = btm.Height / 2; Ycount < btm.Height; Ycount++)
                     {
 
                         if (((btm.GetPixel(Xcount, Ycount).R == 0) && (btm.GetPixel(Xcount, Ycount).G == 0) && (btm.GetPixel(Xcount, Ycount).B == 0)) && ((btmF.GetPixel(Xcount, Ycount).R == 255) && (btmF.GetPixel(Xcount, Ycount).G == 255) && (btmF.GetPixel(Xcount, Ycount).B == 255)))
