@@ -79,7 +79,7 @@ namespace paint_test
                 }
 
 
-                if (sumaCzarnych >= sumaCzarnychOryginal * 0.95)
+                if (sumaCzarnych < sumaCzarnychOryginal * 1.05 && sumaCzarnych >= sumaCzarnychOryginal * 0.88)
                 {
                     //iloscCzarnych zróżnicowanie
                     if (iloscCzarnych >= sumaCzarnych * 0.8) iloscCzarnych += iloscCzarnych * 0.05;
@@ -91,13 +91,13 @@ namespace paint_test
                     else iloscCzarnych += iloscCzarnych * 0.25;
 
                     //iloscPrzeciwnych zróżnicowanie
-                    if (iloscPrzeciwnych <= sumaCzarnych * 0.2) iloscPrzeciwnych /= 10 + iloscPrzeciwnych * 0.1;
-                    else if (iloscPrzeciwnych > sumaCzarnych * 0.2 && iloscPrzeciwnych <= sumaCzarnych * 0.25) iloscPrzeciwnych /= 9 + iloscPrzeciwnych * 0.12;
-                    else if (iloscPrzeciwnych > sumaCzarnych * 0.25 && iloscPrzeciwnych <= sumaCzarnych * 0.3) iloscPrzeciwnych /= 8 + iloscPrzeciwnych * 0.14;
-                    else if (iloscPrzeciwnych > sumaCzarnych * 0.3 && iloscPrzeciwnych <= sumaCzarnych * 0.35) iloscPrzeciwnych /= 7 + iloscPrzeciwnych * 0.16;
-                    else if (iloscPrzeciwnych > sumaCzarnych * 0.35 && iloscPrzeciwnych <= sumaCzarnych * 0.4) iloscPrzeciwnych /= 6 + iloscPrzeciwnych * 0.18;
-                    else if (iloscPrzeciwnych > sumaCzarnych * 0.4 && iloscPrzeciwnych <= sumaCzarnych * 0.45) iloscPrzeciwnych /= 5 + iloscPrzeciwnych * 0.2;
-                    else iloscPrzeciwnych /= 4 + iloscPrzeciwnych * 0.2;
+                    if (iloscPrzeciwnych <= sumaCzarnych * 0.2) iloscPrzeciwnych /= 8 + iloscPrzeciwnych * 0.1;
+                    else if (iloscPrzeciwnych > sumaCzarnych * 0.2 && iloscPrzeciwnych <= sumaCzarnych * 0.25) iloscPrzeciwnych /= 6 + iloscPrzeciwnych * 0.12;
+                    else if (iloscPrzeciwnych > sumaCzarnych * 0.25 && iloscPrzeciwnych <= sumaCzarnych * 0.3) iloscPrzeciwnych /= 5 + iloscPrzeciwnych * 0.14;
+                    else if (iloscPrzeciwnych > sumaCzarnych * 0.3 && iloscPrzeciwnych <= sumaCzarnych * 0.35) iloscPrzeciwnych /= 4 + iloscPrzeciwnych * 0.16;
+                    else if (iloscPrzeciwnych > sumaCzarnych * 0.35 && iloscPrzeciwnych <= sumaCzarnych * 0.4) iloscPrzeciwnych /= 3 + iloscPrzeciwnych * 0.18;
+                    else if (iloscPrzeciwnych > sumaCzarnych * 0.4 && iloscPrzeciwnych <= sumaCzarnych * 0.45) iloscPrzeciwnych /= 2 + iloscPrzeciwnych * 0.2;
+                    else iloscPrzeciwnych /= 2 + iloscPrzeciwnych * 0.2;
 
                     wynik = (iloscCzarnych - iloscPrzeciwnych) / sumaCzarnych;
                 }

@@ -16,7 +16,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Rectangle = System.Drawing.Rectangle;
 using Microsoft.VisualBasic;
 
 namespace paint_test
@@ -29,8 +28,8 @@ namespace paint_test
         public MainWindow()
         {
             InitializeComponent();
-            MyCanvas.DefaultDrawingAttributes.Width = 30;
-            MyCanvas.DefaultDrawingAttributes.Height = 30;
+            MyCanvas.DefaultDrawingAttributes.Width = 32;
+            MyCanvas.DefaultDrawingAttributes.Height = 32;
         }
 
         private void paint_Click(object sender, RoutedEventArgs e)
@@ -49,7 +48,10 @@ namespace paint_test
 
         private void porownaj_Click(object sender, RoutedEventArgs e)
         {
-            zapiszRysunek("savedimage");
+            Save save = new Save();
+            int width = (int)this.MyCanvas.ActualWidth;
+            int height = (int)this.MyCanvas.ActualHeight;
+            save.zapiszRysunek("savedimage", width, height, MyCanvas);
 
             PunktyKluczowe pkt = new PunktyKluczowe();
             IDictionary<string, double> dict = new Dictionary<string, double>();
@@ -76,47 +78,6 @@ namespace paint_test
 
         }
 
-
-        private void zapiszRysunek(String nazwaPliku)
-        {
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.FileName = "savedimage.jpg"; 
-            int krotnoscPliku = 0;
-            string filename;
-
-            if (nazwaPliku != "savedimage") 
-            {
-                if (File.Exists(@"litery\" + nazwaPliku + ".jpg"))
-                    do
-                    {
-                        krotnoscPliku++;
-                    } while (File.Exists(@"litery\" + nazwaPliku + krotnoscPliku + ".jpg")); // sprawdza czy plik o danej nazwie istnieje
-
-                filename = @"litery\" +  nazwaPliku + krotnoscPliku + ".jpg";
-            }
-            else
-                filename = dlg.FileName;
-
-
-
-            int width = (int)this.MyCanvas.ActualWidth;
-            int height = (int)this.MyCanvas.ActualHeight;
-            RenderTargetBitmap rtb =
-            new RenderTargetBitmap(width, height, 96d, 96d, PixelFormats.Default);
-            rtb.Render(MyCanvas);
-            
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
-            {
-                File.SetAttributes(filename, FileAttributes.Normal);
-                BmpBitmapEncoder encoder = new BmpBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(rtb));
-                encoder.Save(fs);
-                fs.Close();
-            }
-
-        }
-
-
         private void zapisz_Click(object sender, RoutedEventArgs e)
         {
             InputBox.Visibility = System.Windows.Visibility.Visible;
@@ -127,7 +88,10 @@ namespace paint_test
         {
             InputBox.Visibility = System.Windows.Visibility.Collapsed;
             String input = InputTextBox.Text;
-            zapiszRysunek(input);
+            Save save = new Save();
+            int width = (int)this.MyCanvas.ActualWidth;
+            int height = (int)this.MyCanvas.ActualHeight;
+            save.zapiszRysunek(input, width, height, MyCanvas);
             InputTextBox.Text = String.Empty;
         }
 
