@@ -28,8 +28,8 @@ namespace paint_test
         public MainWindow()
         {
             InitializeComponent();
-            MyCanvas.DefaultDrawingAttributes.Width = 32;
-            MyCanvas.DefaultDrawingAttributes.Height = 32;
+            MyCanvas.DefaultDrawingAttributes.Width = 30;
+            MyCanvas.DefaultDrawingAttributes.Height = 30;
         }
 
         private void paint_Click(object sender, RoutedEventArgs e)
