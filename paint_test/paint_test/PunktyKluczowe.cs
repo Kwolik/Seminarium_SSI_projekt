@@ -140,6 +140,9 @@ namespace paint_test
                 else
                     wynik = 0;
 
+                if (wynik < 0)
+                    wynik = 0;
+
 
                 wynik *= 100;
                 return (Math.Round(wynik, 2));
